@@ -30,16 +30,14 @@ runs:
 
         # Run tests for the test project only, collect cobertura coverage
         dotnet test StringApp.Tests/StringApp.Tests.csproj \
-            /p:CollectCoverage=true \
+            --no-build \
+            --verbosity normal \
+            --collect:"XPlat Code Coverage" \
             /p:CoverletOutput=coverage/coverage.cobertura.xml \
-            /p:CoverletOutputFormat=cobertura \
-            --no-build --verbosity normal
-
-        # Merge coverage files (if multiple, usually only one)
-        dotnet-coverage merge --output coverage/test-result.cobertura.xml --output-format cobertura coverage/*.cobertura.xml
+            /p:CoverletOutputFormat=cobertura
 
         # Generate Markdown summary report
-        reportgenerator -reports:coverage/test-result.cobertura.xml \
+        reportgenerator -reports:coverage/coverage.cobertura.xml \
                         -targetdir:coverage-report \
                         -reporttypes:MarkdownSummaryGithub
 

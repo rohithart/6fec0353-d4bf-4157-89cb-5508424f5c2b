@@ -30,11 +30,11 @@ runs:
 
         # Run tests for the test project only, collect cobertura coverage
         dotnet test StringApp.Tests/StringApp.Tests.csproj \
-            --no-build \
-            --verbosity normal \
-            --collect:"XPlat Code Coverage" \
-            /p:CoverletOutput=coverage/coverage.cobertura.xml \
-            /p:CoverletOutputFormat=cobertura
+        --no-build \
+        --verbosity normal \
+        --collect:"XPlat Code Coverage" \
+        /p:CoverletOutput=coverage/ \
+        /p:CoverletOutputFormat=cobertura
 
         # Generate Markdown summary report
         reportgenerator -reports:coverage/coverage.cobertura.xml \

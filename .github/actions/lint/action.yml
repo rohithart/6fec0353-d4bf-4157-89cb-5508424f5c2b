@@ -12,6 +12,10 @@ runs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: "9.0.x"
+
+    - name: Restore NuGet packages
+      run: dotnet restore StringApp.sln
+      shell: bash
       
     - name: Run .NET analyzers
       run: dotnet build StringApp.sln /warnaserror /p:EnableNETAnalyzers=true

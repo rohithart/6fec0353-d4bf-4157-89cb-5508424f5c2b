@@ -14,7 +14,7 @@ runs:
         dotnet-version: "9.0.x"
 
     - name: Restore NuGet packages
-      run: dotnet restore StringApp/StringApp.csproj
+      run: dotnet restore StringApp.sln
       shell: bash
 
     - name: Build solution

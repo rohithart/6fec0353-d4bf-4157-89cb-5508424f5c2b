@@ -1,6 +1,4 @@
-// Copyright (c) StringApp. All rights reserved.
-
-using StringApp.Helpers;
+﻿using StringApp.Helpers;
 
 namespace StringApp.Tests.Services
 {

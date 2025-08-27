@@ -1,0 +1,24 @@
+name: Lint application
+description: Lint the application
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: "9.0.x"
+      
+    - name: Run .NET analyzers
+      run: dotnet build StringApp.sln /warnaserror /p:EnableNETAnalyzers=true
+      shell: bash
+
+    - name: Run dotnet format for linting
+      run: dotnet tool install -g dotnet-format || true
+      shell: bash
+    - run: dotnet format StringApp.sln --verify-no-changes
+      shell: bash

@@ -1,0 +1,23 @@
+name: Deploy application
+description: Deploy the application
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: "9.0.x"
+
+    - name: Publish Artifacts
+      run: |
+        dotnet publish StringApp/StringApp.csproj -c Release -o ./publish
+      shell: bash
+    - uses: actions/upload-artifact@v3
+      with:
+        name: StringApp-publish
+        path: ./publish

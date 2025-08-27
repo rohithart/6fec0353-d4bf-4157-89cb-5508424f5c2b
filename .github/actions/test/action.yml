@@ -29,15 +29,10 @@ runs:
         mkdir -p coverage
 
         # Run tests for the test project only, collect cobertura coverage
-        dotnet test StringApp.Tests/StringApp.Tests.csproj \
-        --no-build \
-        --verbosity normal \
-        --collect:"XPlat Code Coverage" \
-        /p:CoverletOutput=coverage/ \
-        /p:CoverletOutputFormat=cobertura
+        dotnet test StringApp.Tests/StringApp.Tests.csproj --collect:"XPlat Code Coverage"
 
         # Generate Markdown summary report
-        reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage_report" -reporttypes:MarkdownSummaryGithub
+        reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage" -reporttypes:MarkdownSummaryGithub
 
         # Append summary to GitHub Actions step summary
         cat coverage-report/SummaryGithub.md >> $GITHUB_STEP_SUMMARY

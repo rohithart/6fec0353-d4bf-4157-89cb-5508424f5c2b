@@ -35,4 +35,4 @@ artifacts/
 *.coverage
 *.coveragexml
 *.trx
-coverage_report
+coverage

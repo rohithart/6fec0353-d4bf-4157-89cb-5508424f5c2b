@@ -37,9 +37,7 @@ runs:
         /p:CoverletOutputFormat=cobertura
 
         # Generate Markdown summary report
-        reportgenerator -reports:coverage/coverage.cobertura.xml \
-                        -targetdir:coverage-report \
-                        -reporttypes:MarkdownSummaryGithub
+        reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage_report" -reporttypes:MarkdownSummaryGithub
 
         # Append summary to GitHub Actions step summary
         cat coverage-report/SummaryGithub.md >> $GITHUB_STEP_SUMMARY

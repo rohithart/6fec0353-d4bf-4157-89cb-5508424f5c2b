@@ -35,5 +35,5 @@ runs:
         reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage" -reporttypes:MarkdownSummaryGithub
 
         # Append summary to GitHub Actions step summary
-        cat coverage-report/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+        cat coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
       shell: bash

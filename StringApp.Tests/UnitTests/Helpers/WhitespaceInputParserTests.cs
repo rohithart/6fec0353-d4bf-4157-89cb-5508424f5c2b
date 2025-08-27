@@ -66,7 +66,7 @@ namespace StringApp.Tests.Helpers
         [Fact]
         public void Parse_ShouldReturn_WhenInputContainsNegativeValue()
         {
-           // Act
+            // Act
             var result = this.parser.Parse("-10 20 30");
 
             // Assert

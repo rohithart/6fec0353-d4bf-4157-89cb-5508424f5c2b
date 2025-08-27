@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Approval required
-        uses: ./.github/actions/approval
+        uses: ./.github/actions/approve
         with:
           GH_TOKEN: "${{ secrets.GH_TOKEN}}"
           TITLE: 'Publish build'

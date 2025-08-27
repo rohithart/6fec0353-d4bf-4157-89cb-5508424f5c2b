@@ -25,15 +25,24 @@ runs:
 
     - name: Run Unit Tests and Generate Coverage Report
       run: |
-        # Run tests and collect coverage in cobertura format
-        dotnet test StringApp.sln /p:CollectCoverage=true /p:CoverletOutput=coverage/ /p:CoverletOutputFormat=cobertura --verbosity normal
+        # Create coverage folder
+        mkdir -p coverage
 
-        # Merge coverage files (if multiple)
-        dotnet-coverage merge --output coverage/test-result.cobertura.xml --output-format cobertura coverage/**/*.cobertura.xml
+        # Run tests for the test project only, collect cobertura coverage
+        dotnet test StringApp.Tests/StringApp.Tests.csproj \
+            /p:CollectCoverage=true \
+            /p:CoverletOutput=coverage/coverage.cobertura.xml \
+            /p:CoverletOutputFormat=cobertura \
+            --no-build --verbosity normal
 
-        # Generate report
-        reportgenerator -reports:coverage/test-result.cobertura.xml -targetdir:coverage-report -reporttypes:MarkdownSummaryGithub
+        # Merge coverage files (if multiple, usually only one)
+        dotnet-coverage merge --output coverage/test-result.cobertura.xml --output-format cobertura coverage/*.cobertura.xml
 
-        # Append summary to GitHub step summary
+        # Generate Markdown summary report
+        reportgenerator -reports:coverage/test-result.cobertura.xml \
+                        -targetdir:coverage-report \
+                        -reporttypes:MarkdownSummaryGithub
+
+        # Append summary to GitHub Actions step summary
         cat coverage-report/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
       shell: bash

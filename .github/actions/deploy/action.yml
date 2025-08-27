@@ -17,7 +17,7 @@ runs:
       run: |
         dotnet publish StringApp/StringApp.csproj -c Release -o ./publish
       shell: bash
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: StringApp-publish
         path: ./publish

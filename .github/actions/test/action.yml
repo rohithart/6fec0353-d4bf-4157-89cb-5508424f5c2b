@@ -23,7 +23,7 @@ runs:
         dotnet tool install --global dotnet-reportgenerator-globaltool
       shell: bash
 
-    - name: Run Unit Tests and Generate Coverage Report
+    - name: Run Unit Tests and HTML Report
       run: |
         # Create coverage folder
         mkdir -p coverage
@@ -31,7 +31,7 @@ runs:
         # Run tests for the test project only, collect cobertura coverage
         dotnet test StringApp.Tests/StringApp.Tests.csproj --collect:"XPlat Code Coverage"
 
-        # Generate Markdown summary report
+        # Generate HTML report
         reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage" -reporttypes:HTML
       shell: bash
 

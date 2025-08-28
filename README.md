@@ -2,7 +2,6 @@
 
 A sample **.NET 9** application with unit tests, linting, code coverage, Docker support, and GitHub Actions CI/CD.  
 
----
 
 ## Prerequisites  
 
@@ -10,7 +9,15 @@ A sample **.NET 9** application with unit tests, linting, code coverage, Docker 
 - [Docker](https://docs.docker.com/get-docker/) (optional, for containerized runs)  
 - [ReportGenerator](https://github.com/danielpalme/ReportGenerator) (for coverage reports)  
 
----
+
+## Assumptions
+- Used .NET Version 9 and has created a Console App.
+- Program returns the longest non-breaking sequence.
+- Manual DI was used as this is a simple console app.
+- GH action requires an approval for Publishing (I am the only approver for now).
+- Multiple Unit test patters are used (even-though it shows inconsistency) to showcase knowledge.
+- Dockerfile is included to showcase knowledge and is not being used for deployment.
+- Currently, the deployment is uploading the complied binaries as artifact.
 
 ## Running Locally  
 
@@ -79,6 +86,11 @@ docker run -it --rm stringapp
 ```
 
 The app will run in the console.
+
+## CI/CD
+GitHub action workflow is in place to implement CI/CD.
+The approval stage, creates a GitHub issue, which has to be responded with a `Yes` or `No` to progress enable publishing. This acts as a gate to avoid accidental publish.
+Currently I am the only approver.
 
 ##  Useful Commands
 

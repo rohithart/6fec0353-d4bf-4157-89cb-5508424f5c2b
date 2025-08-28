@@ -1,6 +1,6 @@
 ﻿using StringApp.Helpers;
 
-namespace StringApp.Tests.Services
+namespace StringApp.Tests.Helpers
 {
     public class ConsoleOutputWriterTests
     {

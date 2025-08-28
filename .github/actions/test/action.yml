@@ -32,10 +32,7 @@ runs:
         dotnet test StringApp.Tests/StringApp.Tests.csproj --collect:"XPlat Code Coverage"
 
         # Generate Markdown summary report
-        reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage" -reporttypes:MarkdownSummaryGithub
-
-        # Append summary to GitHub Actions step summary
-        cat coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+        reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage" -reporttypes:HTML
       shell: bash
 
     - name: Upload Test Results
@@ -49,3 +46,12 @@ runs:
       with:
         name: coverage-report
         path: ./coverage
+
+    - name: Generate Coverage Summary
+      run: |
+        # Generate Markdown summary report
+        reportgenerator -reports:"./StringApp.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./coverage" -reporttypes:MarkdownSummaryGithub
+
+        # Append summary to GitHub Actions step summary
+        cat coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+      shell: bash
